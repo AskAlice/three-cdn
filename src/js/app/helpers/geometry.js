@@ -53,7 +53,7 @@ export default class Geometry {
     console.log(texture);
     let material = new Material(0x000000,0.3).standard;
     if(this.type == 'plane'){
-      material = new Material(0x000000,0.4).plane;
+      material = new Material(0x000000,0.6).plane;
      // material = new Material(0xffffff,1).plane;
    }
    if(this.type == 'cube'){

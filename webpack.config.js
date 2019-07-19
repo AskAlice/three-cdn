@@ -28,7 +28,7 @@ module.exports = env => {
   if (env.NODE_ENV === 'prod') {
     devtool = 'hidden-source-map';
     mode = 'production';
-    stats = 'none';
+    stats = 'minimal';
     outputPath = `${__dirname}/build/js`;
   }
 

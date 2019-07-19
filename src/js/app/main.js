@@ -97,8 +97,8 @@ export default class Main {
         opacity: 1,
         color: 1570734,
         emissive: 0,
-        specular: 1118481,
-        shininess: 30
+        specular: 0,
+        shininess: 0
       } );
       var node1 = new THREE.Mesh( nodeGeometry, nodeMaterial );
     
