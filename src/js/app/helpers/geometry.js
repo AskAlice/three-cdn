@@ -53,8 +53,15 @@ export default class Geometry {
     console.log(texture);
     let material = new Material(0x000000,0.3).standard;
     if(this.type == 'plane'){
-      material = new Material(0x000000,0.6).plane;
+      material = new Material(0x000000,0.66).plane;
      // material = new Material(0xffffff,1).plane;
+     var size = 130;
+      var divisions = 10;
+     var gridHelper = new THREE.GridHelper( size, divisions, 0xffffff,0xffffff);
+      gridHelper.position.set(...position);
+      gridHelper.position.y +=0.1;
+      gridHelper.updateMatrix ()
+      this.scene.add( gridHelper );
    }
    if(this.type == 'cube'){
     material = new Material(0x17f7ae,0.3).standard;

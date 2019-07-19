@@ -67,12 +67,13 @@ export default class Main {
 
 
 
-    // Set up rStats if dev environment
-    if(Config.isDev && Config.isShowingStats) {
-      this.stats = new Stats(this.renderer);
-      this.stats.setUp();
-    }
-
+    // // Set up rStats if dev environment
+    // if(Config.isDev && Config.isShowingStats) {
+    //   this.stats = new Stats(this.renderer);
+    //   this.stats.setUp();
+    // }
+    this.stats = new Stats(this.renderer);
+    this.stats.setUp();
     // Instantiate texture class
     this.texture = new Texture();
 
@@ -90,7 +91,7 @@ export default class Main {
       this.geometry.place([0, -15, 0], [-Math.PI / 2, 0, 0]);
       this.geometry.make('cube')(15,15,15);
       this.geometry.place([0, 30, 0], [Math.PI / 36, Math.PI / 4,0]);
-      var nodeGeometry = new THREE.CylinderGeometry( 6, 6, 2, 32 );	
+      var nodeGeometry = new THREE.CylinderGeometry( 2, 2, 1.5, 32 );	
       var nodeMaterial = new THREE.MeshToonMaterial( {
         transparent: true,
         flatShading: true,
@@ -107,7 +108,7 @@ export default class Main {
       node1.rotateY(  Math.PI / 4)
     
       var node2 = new THREE.Mesh( nodeGeometry, nodeMaterial );
-      node2.position.y = 3;
+      node2.position.y = 1.75;
       node2.receiveShadows = true;
       node2.castShadows = true;
       node2.rotateY(  Math.PI / 4)
@@ -127,16 +128,18 @@ export default class Main {
       this.scene.add(secondNode);
       var curve = new THREE.CatmullRomCurve3( [
       new THREE.Vector3(this.geometry.cube.position.x,this.geometry.cube.position.y-7.5,this.geometry.cube.position.z),
-      new THREE.Vector3(this.geometry.cube.position.x,this.geometry.cube.position.y-15,this.geometry.cube.position.z),
+      new THREE.Vector3(this.geometry.cube.position.x,this.geometry.cube.position.y-14,this.geometry.cube.position.z),
+      new THREE.Vector3(node.position.x, node.position.y+4, node.position.z),
       node.position,
+      //new THREE.Vector3(node.position.x, node.position.y-8, node.position.z),
       new THREE.Vector3(node.position.x, this.geometry.map.position.y, node.position.z)
-      ] );
+      ]);
       this.curve = curve;
       var points = curve.getPoints( 30 );
       var lg = new THREE.BufferGeometry().setFromPoints( points );
       var lm = new THREE.LineBasicMaterial( { color: 0x0000ff } );
       this.line = new THREE.Line( lg, lm );
-     // this.scene.add( this.line );
+    //  this.scene.add( this.line );
 
         this.scene.add(this.traffic);
 
@@ -152,8 +155,9 @@ export default class Main {
 
         // Add dat.GUI controls if dev
         if(Config.isDev) {
-          new DatGUI(this, this.model.obj);
+      //    new DatGUI(this, this.model.obj);
         }
+        new DatGUI(this, this.model.obj);
 
         // Everything is now fully loaded
         Config.isLoaded = true;
@@ -191,7 +195,7 @@ export default class Main {
    //   console.log(this.traffic);
 
    // console.log(this.traffic.children);
-   var starsMaterial = new THREE.PointsMaterial( { color: 0x17a7ae } );
+   var starsMaterial = new THREE.PointsMaterial( { color: 0x17e7ae } );
    let starsGeometry = new THREE.Geometry();
    let star = new THREE.Vector3(Math.random()*2-1,Math.random()*2-1,Math.random()*2-1);
    starsGeometry.vertices.push(star);

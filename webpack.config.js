@@ -27,7 +27,7 @@ module.exports = env => {
   // Prod environment
   if (env.NODE_ENV === 'prod') {
     devtool = 'hidden-source-map';
-    mode = 'production';
+    mode = 'development';
     stats = 'minimal';
     outputPath = `${__dirname}/build/js`;
   }
@@ -130,7 +130,7 @@ module.exports = env => {
 
     plugins: plugins.concat(
       new HtmlWebpackPlugin({
-        title: 'Three.js Webpack ES6 Boilerplate',
+        title: '3d traffic visualization',
         template: path.join(__dirname, 'src/html/index.html'),
         filename: '../index.html',
         env: env.NODE_ENV,
