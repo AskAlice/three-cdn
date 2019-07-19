@@ -204,10 +204,10 @@ export default class Main {
    let me= this;
     // set the quaternion
     this.traffic.children.forEach(function(p){
-      (p.t <= 1) ? p.t+=0.005 : me.traffic.remove(p);
+      (p.t <= 0.995) ? p.t+=0.005 : me.traffic.remove(p);
       var up = new THREE.Vector3( 0, 1, 0 );
       var pp = me.curve.getUtoTmapping(p.t)
-      var pos =  me.curve.getPoint(p.t);
+      var pos =  me.curve.getPoint(pp);
       var tangent = me.curve.getTangent(p.t).normalize();
      // console.log(tangent);
       let axis = new THREE.Vector3();
